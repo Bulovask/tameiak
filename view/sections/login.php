@@ -21,7 +21,7 @@
                     });
                     
                     if(res.ok) {
-                        const token = await res.json();
+                        const token = await res.text();
                         alert(token)
                     } else {
                         alert("houve um erro! Tente novamente");

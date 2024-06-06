@@ -49,10 +49,27 @@ CREATE TABLE Usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     cpf CHAR(11) UNIQUE,
-    idFuncaoUsuario INT NOT NULL
+    idFuncaoUsuario INT NOT NULL,
+    senha text not null
 );
 
-INSERT INTO `ssm_bk`.`categoria` (`id`, `nome`) VALUES (1, 'gato');
+-- ADICIONAR
+
+INSERT INTO FuncaoUsuario(nome) VALUES ('ADMINISTRADOR'),
+									   ('GERENTE'),
+                                       ('OPERADOR DE CAIXA'),
+									   ('ESTOQUISTA');
+
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
+
+
+
+
+
+
+
 
 
 
