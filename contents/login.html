@@ -1,0 +1,74 @@
+<form action="control/login.php" method="post">
+    <h1>Entre no Sistema</h1>
+    <div>
+        <label for="id">IDENTIFICAÇÃO:</label>
+        <input id="id" name="id" type="text" placeholder="ID ou CPF" autocomplete="username">
+    </div>
+    <div>
+        <label for="id">SENHA:</label>
+        <div class="password-input">
+            <input id="password" name="password" type="password" placeholder="Senha" autocomplete="current-password">
+            <button id="password-view-btn" type="button" class="eye-open"></button>
+        </div>
+    </div>
+    <div>
+        <button type="reset">Limpar</button>
+        <button type="submit">Entrar</button>
+    </div>
+</form>
+
+<script>
+    (function() {
+        const id = document.getElementById("id");
+        const passwordViewBtn = document.getElementById("password-view-btn");
+        const passwordElem = document.getElementById("password");
+
+        // VALIDAR ID/CPF
+        id.oninput = e => {
+            // id
+            if(/^#/.test(id.value)) {
+                id.value = "#" + id.value.replace(/\D/g, "");
+            }
+            // cpf
+            else if(e.inputType != "deleteContentBackward") {
+                value = id.value.replace(/\D+/g, "");
+
+                if(value.length > 11) {value = value.slice(0,11)}
+                
+                if(value.length < 6) {
+                    value = value.replace(/(\d{3})(\d{0,2})/, "$1.$2");
+                }
+                else if(value.length < 9) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+                }
+                else {
+                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
+                }
+        
+                id.value = value;
+            }
+        }
+
+        // VER/ESCONDER SENHA
+        passwordViewBtn.onclick = () => {
+            if(passwordElem.getAttribute("type") == "password") {
+                passwordElem.setAttribute("type", "text");
+                passwordViewBtn.classList.remove("eye-open");
+                passwordViewBtn.classList.add("eye-close");
+            } else {
+                passwordElem.setAttribute("type", "password");
+                passwordViewBtn.classList.remove("eye-close");
+                passwordViewBtn.classList.add("eye-open");
+            }
+            passwordElem.focus();
+        }
+
+        // FOCUS/BLUR
+        passwordElem.onfocus = () => {
+            passwordElem.parentElement.classList.add("focus");
+        }
+        passwordElem.onblur = () => {
+            passwordElem.parentElement.classList.remove("focus");
+        }
+    })();
+</script>

@@ -5,11 +5,9 @@ body {
     height: 100vh;
 
     background-color: #abc;
-}
-
-section {
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,6 +41,13 @@ header {
     border-bottom: 4px solid #4567;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
 form {
     background-color: #9ab;
     padding: 5px;
@@ -59,19 +64,57 @@ form div {
     gap: 5px;
 }
 
-.center {
+input, .password-input {
+    border: 0.5px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    padding: 2px;
+}
+
+input:focus, .password-input.focus {
+    outline: 2px solid #fff;
+}
+
+.logo {
+    font-size: 32px;
+    font-family: Calibri;
+    font-weight: 700;
+    color: #345;
+}
+
+.password-input {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+    gap: 0;
 }
 
-.header-main-grid {
-    display: grid;
-    grid-template-rows: min-content 1fr;
+.password-input input {
+    flex-grow: 1;
+    background-color: inherit;
+    border: none;
+    padding: 0;
+    width: calc(100% - 17px);
 }
 
-.reset-decoration {
-    color: #000;
-    text-decoration: none;
+.password-input input:focus {
+    outline: none;
+}
+
+.password-input button {
+    flex-grow: 0;
+    width: 17px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border-radius: 0;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+}
+
+.password-input button.eye-open {
+    background-image: url("/ssm.bk/public/img/eye-open.png");
+}
+
+.password-input button.eye-close {
+    background-image: url("/ssm.bk/public/img/eye-close.png");
 }

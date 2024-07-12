@@ -1,11 +1,13 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/ssm.bk/model/DAO/BDPDO.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/ssm.bk/model/DAO/BDPDO.php";
 
 class UsuarioDAO {
-    public static function valid_login($user_id, $user_password) {
+    public static function get_user($user_id, $user_password, $admin = false) {
         try {
-            $sql = "SELECT id, cpf, senha FROM Usuario WHERE 
-                    (id=:user_id or cpf=:user_id) and senha=:user_password;";
+            $end = $admin ? " and idFuncaoUsuario = 1;" : " and idFuncaoUsuario != 1;";
+            $sql = "SELECT id, idFuncaoUsuario FROM Usuario WHERE 
+                (id=:user_id or cpf=:user_id) and senha=:user_password" . $end;
+                    
             $p_sql = BDPDO::getInstance()->prepare($sql);
             $p_sql->bindValue(":user_id", $user_id);
             $p_sql->bindValue(":user_password", $user_password);
@@ -15,4 +17,6 @@ class UsuarioDAO {
             print "Erro ao executar a função de salvar" . $e->getMessage();
         }
     }
+
+
 }

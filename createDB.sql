@@ -50,12 +50,13 @@ CREATE TABLE Usuario (
     nome VARCHAR(255) NOT NULL,
     cpf CHAR(11) UNIQUE,
     idFuncaoUsuario INT NOT NULL,
-    senha text not null
+    senha VARCHAR(255) NOT NULL
 );
 
 -- ADICIONAR
 
-INSERT INTO FuncaoUsuario(nome) VALUES ('ADMINISTRADOR'),
+INSERT INTO FuncaoUsuario(nome) VALUES ('SEM FUNÇÃO'),
+                                       ('ADMINISTRADOR'),
 									   ('GERENTE'),
                                        ('OPERADOR DE CAIXA'),
 									   ('ESTOQUISTA');
@@ -63,6 +64,9 @@ INSERT INTO FuncaoUsuario(nome) VALUES ('ADMINISTRADOR'),
 INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
 INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
 INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'GERENTE'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ESTOQUISTA'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'OPERADOR DE CAIXA'), 'admin');
 
 
 
