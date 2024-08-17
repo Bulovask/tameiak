@@ -1,33 +1,50 @@
-<form action="control/login.php" method="post">
-    <h1>Entre no Sistema</h1>
+<form action="control/add_user.php" method="post">
+    <h1>Cadastrar Novo Usuário</h1>
     <div>
-        <label for="id">IDENTIFICAÇÃO:</label>
-        <input id="id" name="id" type="text" placeholder="ID ou CPF" autocomplete="username" required>
+        <label for="nome">NOME:</label>
+        <input id="nome" name="nome" type="text" placeholder="Nome Completo" autocomplete="name" required>
     </div>
     <div>
-        <label for="password">SENHA:</label>
+        <label for="cpf">CPF:</label>
+        <input id="cpf" name="cpf" type="text" placeholder="CPF" autocomplete="off">
+    </div>
+    <div>
+        <label for="funcao">FUNÇÃO:</label>
+        <select name="funcao" id="funcao">
+            <?php
+                include_once $_SERVER["DOCUMENT_ROOT"] . "/tameiak/model/DAO/funcaoUsuarioDAO.php";
+                foreach(FuncaoDAO::pegar_funcoes() as $i => $value) {
+                    echo "<option value='".$value["id"]."'>".$value["nome"]."</option>";
+                }
+            ?>
+        </select>
+    </div>
+    <div>
+        <label for="senha">SENHA:</label>
         <div class="password-input">
-            <input id="password" name="password" type="password" placeholder="Senha" autocomplete="current-password" required>
+            <input id="senha" name="senha" type="password" placeholder="Senha" autocomplete="current-password" required>
             <button id="password-view-btn" type="button" class="eye-open"></button>
         </div>
     </div>
     <div>
         <button id="reset" class="btn-reset" type="reset">Limpar</button>
-        <button id="submit" class="btn-access" type="submit" disabled>Entrar</button>
+        <button id="submit" class="btn-access" type="submit" disabled>Cadastrar</button>
     </div>
 </form>
 
+
 <script>
     (function() {
-        const id = document.getElementById("id");
+        const nome = document.getElementById("nome");
+        const cpf = document.getElementById("cpf");
         const passwordViewBtn = document.getElementById("password-view-btn");
-        const passwordElem = document.getElementById("password");
+        const passwordElem = document.getElementById("senha");
         const submit = document.getElementById("submit");
         const reset = document.getElementById("reset");
 
         function valid() {
-            // válidar cpf ou id e a senha para habilitar/desabilitar o botão de enviar
-            if(/^#\d+|\d{3}\.\d{3}\.\d{3}-\d\d$/.test(id.value) && passwordElem.value != "") {
+            // válidar nome, cpf e a senha para habilitar/desabilitar o botão de enviar
+            if(/^$|\d{3}\.\d{3}\.\d{3}-\d\d$/.test(cpf.value) && passwordElem.value != "" && nome.value != "") {
                 submit.removeAttribute("disabled");
             }
             else {
@@ -35,15 +52,14 @@
             }
         }
 
-        // VALIDAR ID/CPF
-        id.oninput = e => {
-            // id
-            if(/^#/.test(id.value)) {
-                id.value = "#" + id.value.replace(/\D/g, "");
-            }
+        // VALIDAR NOME
+        nome.oninput = valid;
+
+        // VALIDAR CPF
+        cpf.oninput = e => {
             // cpf
-            else if(e.inputType != "deleteContentBackward") {
-                value = id.value.replace(/\D+/g, "");
+            if(e.inputType != "deleteContentBackward") {
+                value = cpf.value.replace(/\D+/g, "");
 
                 if(value.length > 11) {value = value.slice(0,11)}
                 
@@ -57,7 +73,7 @@
                     value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
                 }
         
-                id.value = value;
+                cpf.value = value;
             }
             valid();
         }

@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <span class="logo">SSM.BK</span>
+        <span class="logo">Tameiak</span>
     </header>
     <main>
         <?php include_once $content ?>

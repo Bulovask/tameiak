@@ -12,7 +12,6 @@ class Tokens {
         self::init();
         $token = password_hash("token", PASSWORD_DEFAULT);
         $_SESSION["token_list"][$token] = [
-            "user-type" => $user["type"],
             "user-id" => $user["id"],
             "user-password" => $user["password"]
         ];

@@ -16,10 +16,13 @@
 ## Uso
 ### Adicionando usuário
 ```sql
-insert into
-    Usuario(nome, cpf, idFuncaoUsuario)
-    values
-    (<nome>, <cpf>, <idFuncaoUsuario>);
+INSERT INTO Usuario(
+    nome, cpf,
+    idFuncaoUsuario, hash_senha
+) VALUE (
+    :nome, :cpf, 
+    :idFuncaoUsuario, :hash_senha
+);
 ```
 
 ### Removendo Usuário

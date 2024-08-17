@@ -1,10 +1,23 @@
+:root {
+    --bg1: #ff0;
+    --bg2: #006;
+    --bg3: #ffe;
+    --bg4: #99f;
+    --fg1: #300;
+    --fg2: #fff;
+    --fg3: #003;
+    --fg4: #000;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Calibri, Cambria, serif;
+    font-size: 18px;
     height: 100vh;
 
-    background-color: #abc;
+    background-color: var(--bg4);
+    color: var(--fg4);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr min-content;
@@ -14,19 +27,44 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 5px;
     box-sizing: border-box;
+    margin-inline-start: 0;
+}
+
+h1 {font-size: 40px}
+h2 {font-size: 34px}
+h3 {font-size: 30px}
+h4 {font-size: 27px}
+h5 {font-size: 24px}
+h6 {font-size: 22px}
+
+p {
+    text-indent: 32px;
+    text-align: justify;
+}
+
+p::first-letter {
+    font-size: 1.5rem;
+}
+
+li {
+    text-align: justify;
 }
 
 button, .btn {
-    background-color: #cba;
+    background-color: var(--bg2);
     padding: 3px;
-    border: 1px solid #876;
+    border: 1px solid #777;
     border-radius: 5px;
-    color: #000;
+    color: var(--fg2);
     text-decoration: none;
 }
 
 button:active, .btn:active {
-    background-color: #987;
+    filter: brightness(80%);
+}
+
+button:disabled, .btn:disabled {
+    filter: grayscale(100%) brightness(80%);
 }
 
 header {
@@ -35,10 +73,11 @@ header {
     gap: 5px;
     top: 0;
     margin: 0;
-    padding: 0;
+    padding: 5px 10px;
 
-    background-color: #789a;
-    border-bottom: 4px solid #4567;
+    background-color: var(--bg2);
+    border-bottom: 4px solid var(--fg2);
+    color: var(--fg2);
 }
 
 main {
@@ -46,29 +85,46 @@ main {
     justify-content: center;
     align-items: center;
     overflow: auto;
+    padding: 25px;
 }
 
 form {
-    background-color: #9ab;
+    background-color: var(--bg2);
+    color: var(--fg2);
     padding: 5px;
-    margin: 5px;
+    margin: 0;
+    width: max-content;
     width: max-content;
     border-radius: 5px;
     box-shadow: 1px 1px 3px #000;
 }
 
-form div {
+form > div {
     display: flex;
     margin: 2px;
     justify-content: space-between;
     gap: 5px;
 }
 
+form > div > * {
+    flex: 1 1 45% ;
+    box-sizing: border-box;
+    margin: 0;
+}
+
 input, .password-input {
     border: 0.5px solid #000;
     border-radius: 3px;
     background-color: #fff;
-    padding: 2px;
+    color: #000;
+    padding: 0 5px;
+    margin: 0;
+    width: 0;
+    box-sizing: border-box;
+}
+
+input {
+    padding: 5px;
 }
 
 input:focus, .password-input.focus {
@@ -79,7 +135,6 @@ input:focus, .password-input.focus {
     font-size: 32px;
     font-family: Calibri;
     font-weight: 700;
-    color: #345;
 }
 
 .password-input {
@@ -91,8 +146,9 @@ input:focus, .password-input.focus {
     flex-grow: 1;
     background-color: inherit;
     border: none;
-    padding: 0;
-    width: calc(100% - 17px);
+    padding: 5px 0;
+    margin: 0;
+    width: calc(100% - 25px);
 }
 
 .password-input input:focus {
@@ -101,20 +157,31 @@ input:focus, .password-input.focus {
 
 .password-input button {
     flex-grow: 0;
-    width: 17px;
+    width: 25px;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     border-radius: 0;
     border: none;
     background-color: inherit;
-    padding: 0;
+    padding: 5px;
+    margin: 0;
 }
 
 .password-input button.eye-open {
-    background-image: url("/ssm.bk/public/img/eye-open.png");
+    background-image: url("/tameiak/public/img/eye-open.png");
 }
 
 .password-input button.eye-close {
-    background-image: url("/ssm.bk/public/img/eye-close.png");
+    background-image: url("/tameiak/public/img/eye-close.png");
+}
+
+.btn-access {
+    background-color: #33a;
+    color: #fff;
+}
+
+.btn-reset {
+    background-color: #a33;
+    color: #fff;
 }

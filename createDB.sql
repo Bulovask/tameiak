@@ -1,6 +1,6 @@
-DROP DATABASE ssm_bk;
-CREATE DATABASE ssm_bk;
-USE ssm_bk;
+DROP DATABASE Tameiak;
+CREATE DATABASE Tameiak;
+USE Tameiak;
 
 CREATE TABLE Categoria (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE Usuario (
     nome VARCHAR(255) NOT NULL,
     cpf CHAR(11) UNIQUE,
     idFuncaoUsuario INT NOT NULL,
-    senha VARCHAR(255) NOT NULL
+    hash_senha VARCHAR(255) NOT NULL
 );
 
 -- ADICIONAR
@@ -61,14 +61,10 @@ INSERT INTO FuncaoUsuario(nome) VALUES ('SEM FUNÇÃO'),
                                        ('OPERADOR DE CAIXA'),
 									   ('ESTOQUISTA');
 
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), 'admin');
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'GERENTE'), 'admin');
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ESTOQUISTA'), 'admin');
-INSERT INTO Usuario(nome, idFuncaoUsuario, senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'OPERADOR DE CAIXA'), 'admin');
+INSERT INTO Usuario(nome, idFuncaoUsuario, hash_senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), "$2y$10$e8hc/iLAy34MCbWC5bYqu.jmTER9IPHNcU2dlIHQCuyOhMpnUfjVC");
 
-
+-- Forma padrão de adicionar novos usuários
+-- INSERT INTO Usuario(nome, cpf,  idFuncaoUsuario, hash_senha) VALUE (:nome, :cpf, :idFuncaoUsuario, :hash_senha);
 
 
 

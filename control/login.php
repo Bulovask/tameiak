@@ -1,23 +1,13 @@
 <?php
-function login($user) {
-    if($user['id'] != "" && $user['password'] != "" && $user['type'] != "") {
-        if(UsuarioDAO::get_user($user["id"], $user["password"], $user["type"] == "admin")) {
-            echo json_encode(array(
-                'data'=> Tokens::newToken($user),
-                'err' => false
-            ));
-        }
-        else {
-            echo json_encode(array(
-                'data' => "Identificação ou senha inválido(a)!",
-                'err' => true
-            ));
-        }
-    } else {
-        echo json_encode(array(
-            'data' => "preencha todos os campos",
-            'err' => true
-        ));
-    }
+include_once $_SERVER["DOCUMENT_ROOT"] . "/tameiak/control/token.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/tameiak/model/DAO/usuarioDAO.php";
+
+function login($id, $password) {
+    $usuario = UsuarioDAO::pegar_usuario($id, $password);
+    print_r($usuario);
 }
 
+$user_id       = $_POST["id"];
+$user_password = $_POST["password"];
+
+login($user_id, $user_password);
