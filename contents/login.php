@@ -17,6 +17,14 @@
     </div>
 </form>
 
+<?php 
+    if(isset($_GET["msg"]) && $_GET["msg"] == "error") {
+        echo '<div class="error popup">
+            <span>ERRO: Identificação ou Senha estão erradas!</span>
+        </div>';
+    }
+?>
+
 <script>
     (function() {
         const id = document.getElementById("id");

@@ -12,8 +12,10 @@ class Tokens {
         self::init();
         $token = password_hash("token", PASSWORD_DEFAULT);
         $_SESSION["token_list"][$token] = [
-            "user-id" => $user["id"],
-            "user-password" => $user["password"]
+            "user-id" => $user->getID(),
+            "user-password" => $user->getSenha(),
+            "user-function" => $user->getFuncao(),
+            "time" => time() + 1860 // expira em 31 minutos
         ];
         return $token;
     }

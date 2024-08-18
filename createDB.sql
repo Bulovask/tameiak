@@ -61,7 +61,12 @@ INSERT INTO FuncaoUsuario(nome) VALUES ('SEM FUNÇÃO'),
                                        ('OPERADOR DE CAIXA'),
 									   ('ESTOQUISTA');
 
-INSERT INTO Usuario(nome, idFuncaoUsuario, hash_senha) VALUE ('admin', (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'), "$2y$10$e8hc/iLAy34MCbWC5bYqu.jmTER9IPHNcU2dlIHQCuyOhMpnUfjVC");
+INSERT INTO Usuario(nome, idFuncaoUsuario, hash_senha) 
+    VALUE (
+        'admin',
+        (SELECT id FROM FuncaoUsuario WHERE nome = 'ADMINISTRADOR'),
+        "$2y$10$e8hc/iLAy34MCbWC5bYqu.jmTER9IPHNcU2dlIHQCuyOhMpnUfjVC"
+    );
 
 -- Forma padrão de adicionar novos usuários
 -- INSERT INTO Usuario(nome, cpf,  idFuncaoUsuario, hash_senha) VALUE (:nome, :cpf, :idFuncaoUsuario, :hash_senha);

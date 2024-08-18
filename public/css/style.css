@@ -185,3 +185,20 @@ input:focus, .password-input.focus {
     background-color: #a33;
     color: #fff;
 }
+
+.popup {
+    position: fixed;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px #000;
+    z-index: 1;
+    background-color: var(--bg4);
+    left: 5px;
+    top: 5px;
+    font-size: 18px;
+}
+
+.error {
+    background-color: #a33;
+    color: #fff;
+}
