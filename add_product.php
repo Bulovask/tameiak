@@ -10,8 +10,8 @@ if(isset($_COOKIE["access_token"]) && isset($_SESSION["token_list"][$_COOKIE["ac
 }
 
 if(isset($usuario) && $usuario["user-function"] == "2") {
-    $page_title = "Cadastrar Novo Usuário";
-    $content = "contents/add_or_edit_user.php";
+    $page_title = "Cadastrar Novo Produto";
+    $content = "contents/add_or_edit_product.php";
     $menu_type = "admin";
 
     include_once "view/template.php";

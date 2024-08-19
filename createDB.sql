@@ -9,10 +9,13 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Produto (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    codigoBarra INT NOT NULL UNIQUE,
+    codigoBarra VARCHAR(255) NOT NULL UNIQUE,
     nome VARCHAR(255) NOT NULL,
     descricao TEXT,
-    preco DECIMAL(12 , 2 ) NOT NULL
+    preco DECIMAL(12 , 2 ) NOT NULL,
+    quantidadeEstoque INT NOT NULL DEFAULT 0,
+    dataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ativo TINYINT(1) NOT NULL DEFAULT 1
 );
 
 CREATE TABLE CategoriaProduto (
